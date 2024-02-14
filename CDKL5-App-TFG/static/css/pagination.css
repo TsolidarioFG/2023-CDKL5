@@ -1,0 +1,41 @@
+.pagination {
+  display: flex;
+  justify-content: space-around;
+}
+
+.pagination .previous {
+  text-align: center;
+  display: inline-flex;
+  padding-right: 10px;
+  gap: 5px;
+}
+
+.pagination .next {
+  text-align: center;
+  display: inline-flex;
+  padding-left: 10px;
+  gap: 10px;
+}
+.pagination a {
+  background-color: #d285cb;
+  border: 2px #494949 solid;
+  color: black;
+
+  padding: 8px 16px;
+  text-decoration: none;
+}
+
+.pagination .current {
+  color: #494949;
+}
+
+.pagination a.active {
+  background-color: #4CAF50;
+  color: white;
+  border-radius: 5px;
+}
+
+.pagination a:hover:not(.active) {
+  background-color: #ddd;
+  border-radius: 5px;
+}

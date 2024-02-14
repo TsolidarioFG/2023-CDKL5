@@ -1,0 +1,139 @@
+  /*----------------------CONTAINER WIDGET----------------------------------------*/
+.container {
+  text-align: center;
+
+}
+  /*----------------------BUTTON GROUP WIDGET----------------------------------------*/
+
+.btn-group {
+  padding-bottom: 1%;
+}
+
+.btn-group button {
+    background-color: #7d0db1; /* Green background */
+    border: 1px solid rgb(4, 10, 4); /* border */
+    color: white; /* White text */ 
+    padding: 10px 24px; /* Some padding */
+    cursor: pointer; /* Pointer/hand icon */
+    float: left; /* Float the buttons side by side */
+  }
+
+/* Clear floats (clearfix hack) */
+.btn-group:after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.btn-group button:focus {
+    background-color: #650c77;
+}
+
+.btn-group button:not(:last-child) {
+    border-right: none; /* Prevent double borders */
+}
+
+.btn-group button:hover {
+    background-color: #543988;
+  }
+
+   /*----------------------BUTTON WIDGET----------------------------------------*/
+
+  .button-space {
+    position: fixed;
+    bottom: 15%;
+    right: 5%;
+  }
+  
+  .button-space button{
+    display: flex;
+    height: 8rem;
+    width: 8rem;
+    background-color: rebeccapurple;
+    border-radius : 100%;
+    align-items: center;
+    justify-content: center;
+    font-size: 10vh;
+  }
+
+  /*----------------------IMAGE WIDGET----------------------------------------*/
+
+  .home-logo {
+    width: 325px;
+    height: 325px;
+    object-fit: cover;
+    padding: 1%;
+  }
+
+  /*----------------------MULTILINE TEXT WIDGET----------------------------------------*/
+
+  .multiline {
+    white-space: pre-wrap;
+    text-align: left;
+    border: solid 1px black;
+    padding: 0.5%;
+  }
+
+
+    /*---------------------- TEXT WIDGET----------------------------------------*/
+
+    .show-value-grid {
+      text-align: center;
+    }
+
+    .show-value-grid .wow-value {
+      color:rgb(190, 11, 11);
+      font-size: 3vh;
+    }
+
+    .spaced-text {
+      text-align: center;
+      font-size: larger;
+    }
+
+    .spaced-div {
+      padding-top: 3%;
+    }
+
+    /*----------------------FORM FIELD WIDGET----------------------------------------*/
+
+  .field-block {
+    margin-left: 325px;
+    margin-top:10px;
+    width:45%;
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+  }
+
+  .part-title {
+    padding: 2%;
+    
+  }
+
+  .logins {
+    padding: 1%;
+  }
+
+
+  @media (max-width: 767px) {
+    .field-block {
+      margin-left: -100px;
+      width:60%;
+      display: inline-block;
+      text-align: left;
+    }
+  }
+
+  .form-list-field {
+    padding: .3%;
+  }
+
+  .m-0\ text-center\ text-black {
+    padding-top: 10%;
+    padding-bottom: 5%;
+  }
+
+  .title-text {
+    color:#653024 !important;
+  }

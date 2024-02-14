@@ -1,0 +1,13 @@
+html {
+  /*background: url("image.jpg");*/
+  background-color: #e7f7e5; /* posibilidades: b2ffff(cyan), 70b0aa(azul apagado), 92aa9d (otro azul apagado), d3d26d (verde mas acorde al logo), e0df60 (lima)*/
+  background-repeat: repeat;
+  background-size: cover;
+  background-position: top;
+}
+
+body {
+  background-color: #fff0 !important; 
+  padding-top: 100px;
+  padding-bottom: 140px;
+}

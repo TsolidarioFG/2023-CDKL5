@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block content %}
+
+<div class="container">
+    <form method="post", enctype="multipart/form-data">
+      {% csrf_token %}
+      <ul>
+        {% for field in form %}
+        <li class="form-list-field">
+          <b>{{ field.label }}</b> {{ field }}
+        </li>
+      {% endfor %}
+      </ul>
+      <br/>
+      <button class="btn btn-light" type="submit" name="addEntry">Enviar</button>
+  </div>
+
+{% endblock content %}

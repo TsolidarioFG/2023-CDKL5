@@ -1,0 +1,13 @@
+#footer {
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: #B5BD00 !important;
+}
+
+.container .document-links {
+    font-size: large;
+    display: inline-flex;
+    gap: 1rem;
+  }

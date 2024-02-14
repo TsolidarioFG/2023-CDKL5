@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block content %}
+
+<div class="container">
+  <h1 class="m-0 text-center text-black"><b class="title-text"> Respuesta a: {{ original.Titulo }}</b></h1>
+  <br/>
+  <form method="post", enctype="multipart/form-data">
+    {% csrf_token %}
+    <ul>
+      {% for field in form %}
+      <li>
+        {{ field }}
+      </li>
+    {% endfor %}
+    </ul>
+    <br/>
+    <button class="btn btn-light" type="submit" name="addEntry">Publicar</button>
+</div>
+
+{% endblock content %}

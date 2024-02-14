@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block content %}
+
+<div class="container">
+    <div class="btn-group">
+      <button onclick="location.href='/signup/amigo'">Amigo</button>
+      <button autofocus>Socio B.</button>
+      <br/>
+    </div>
+
+    <h1 class="m-0 text-center text-black"><b class="title-text">Socio Ya registrado</b></h1>
+    <br/>
+    <br/>
+    <div class="container">
+      {% if message %}
+      <div class="alert alert-danger">
+        {{ message }}
+      </div>
+      {% endif %}
+      <form method="GET">
+        {% csrf_token %}
+        <label class="form-list-field" for="socio-search-id">Introduzca el ID de socio:</label>
+        <br/>
+        <input class="form-list-field" type="search" id="socio-search-id" name="idSocio">
+        <br/>
+        <label class="form-list-field" for="socio-search-code">Introduzca el código identificativo de socio:</label>
+        <br/>
+        <input class="form-list-field" type="search" id="socio-search-code" name="socioCode">
+        <button type="submit">Buscar</button>
+      </form>
+    </div>
+
+</div>
+{% endblock content %}

@@ -1,0 +1,78 @@
+.foro-accordion {
+  padding-top: 1%;
+}
+
+
+.accordion-title {
+  background-color: #b5bd00 !important; /*962196, 653024*/
+  color: #653024;
+  cursor: pointer;
+  padding: 1em;
+  width: 100%;
+  text-align: left;
+  border: .2rem solid black;
+  /*border-radius: .8rem;*/
+  outline: none;
+  transition: 0.4s;
+}
+
+.accordion-title:hover {
+  background-color: #777;
+}
+
+.accordion-title#visto {
+  color: #817260;
+
+}
+
+.accordion-text {
+  padding: 1em 1em;
+  background-color: white;
+  display: none;
+  overflow: scroll;
+  margin-bottom: 1%;
+}
+
+.plus::before {
+  content: "+";
+  font-size: 10vw;
+}
+
+#accordion .resp-list{
+  display: none;
+}
+
+li .response-title {
+  text-align: left;
+  color: #0777;
+  padding: auto;
+}
+
+li .response-text {
+  text-align: left;
+  padding: auto;
+}
+
+button.shower-btn {
+  cursor: pointer;
+  outline: 0;
+  display: inline-block;
+  font-weight: 400;
+  line-height: 1.5;
+  text-align: center;
+  background-color: transparent;
+  border: 1px solid transparent;
+  padding: 6px 12px;
+  font-size: 1rem;
+  border-radius: .25rem;
+  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  color: #600c81;
+  border-color: #600c81;
+}
+
+button.shower-btn:hover {
+  color: #fff;
+  background-color: #600c81;
+  border-color: #600c81;
+}
+

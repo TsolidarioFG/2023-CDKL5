@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block content %}
+
+<div class="container">
+  <form method="post", enctype="multipart/form-data">
+    <h1> <b class="title-text">Editar el post seleccionado </b></h1>
+    <p>ADVERTENCIA: si guarda los cambios, se actualizará la fecha de publicación</p>
+    {% csrf_token %}
+    <ul>
+      {% for field in form %}
+      <li class="form-list-field">
+        {{ field }}
+      </li>
+    {% endfor %}
+    </ul>
+    <br/>
+    <button class="btn btn-light" type="submit" name="addEntry">Guardar Cambios</button>
+</div>
+{% endblock content %}

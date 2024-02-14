@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block content %}
+
+<script src="https://code.jquery.com/jquery-3.6.0.slim.js"> </script> 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.min.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script>
+  $(document).ready(function(){
+    $('.clickable').click(function() {
+      var $item = $(this).closest("tr")   // Finds the closest row <tr> 
+        .attr('id')
+        //.find("td[id]")     // Gets a descendent with class="nr"
+        //.text()
+        window.location = $item
+        //alert($item)
+    });
+});
+</script>
+
+<div class="container">
+
+  {% if messages %}
+        {% for message in messages %}
+            <div class="alert {{ message.tags }} alert-dismissible fade show" role="alert">
+              {{ message }}
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" onclick="onButtonPress()"></button>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+  <h1 class="m-0 text-center text-black"><b class="title-text">Lista de usuarios para tesorería</b></h1>
+  <br/>
+  <button class="btn btn-secondary" onclick="location.href='/manage/payvars'" name="editPayVars">Editar Parámetros generales de pagos</button>
+  <br/>
+  <form method="post", enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="table-wrapper">
+    <table class="fl-table">
+      <thead>
+        <th/>Titular
+        <th/>IBAN
+        <th/>Identificador
+        <th/>Tarifa (€)
+        <th/>Pago Pendiente
+        <th/>Pago Registrado
+
+      </thead>
+      <tbody>
+      {% for object in page_obj %}
+        <tr id="{{ object.EditLink }}">
+            <td/> {{ object.Titular }}
+            <td/> {{ object.IBAN }}
+            <td/> {{ object.IdentificadorShow }}
+            <td/> {{ object.Tarifa }}
+            {%if object.Pendiente %}
+            <!--<td/ class="color-green">--> <td/><span class="dot-color-green"></span>
+            {% else %}
+            <!--<td/ class="color-red">-->  <td/><span class="dot-color-red"></span>
+            {% endif %}
+            {% for field in payForm %}
+            {% if field.label == object.Identificador %}
+            <td/> {{ field }}
+            {% endif %}
+            {% endfor %}
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    </div>
+    <button class="btn btn-light" type="submit" name="updatePays">Guardar Pagos Registrados</button>
+    <button class="btn btn-light" type="reset" name="resetPays" onclick="location.href='/manage/users?reset=True'">Reiniciar registro de pagos</button>
+  </form>
+</br>
+<div class="pagination">
+  <span class="step-links">
+      {% if page_obj.has_previous %}
+      <div class="previous">
+        <a href="?page=1&perPage={{ selected }}">&laquo; inicio</a>
+        <br/>
+        <a href="?page={{ page_obj.previous_page_number }}&perPage={{ selected }}">anterior</a>
+      </div>
+      {% endif %}
+
+      <span class="current">
+          Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.
+      </span>
+
+      {% if page_obj.has_next %}
+      <div class="next">
+        <a href="?page={{ page_obj.next_page_number }}&perPage={{ selected }}">siguiente</a>
+        <a href="?page={{ page_obj.paginator.num_pages }}&perPage={{ selected }}">último &raquo;</a>
+      </div>
+      {% endif %}
+  </span>
+</div>
+  <br/>
+  <br/>
+  <form method="GET">
+    <label for="perPage">Items por página:</label>
+    <select name="perPage" id="perPage" onchange='{ this.form.submit(); }'>
+      <option selected hidden>{{ selected }}</option>
+      {% for opt in options %}
+      <option >{{ opt }}</option>
+      {% endfor %}
+    </select>
+  </form>
+</div>
+
+{% endblock content %}

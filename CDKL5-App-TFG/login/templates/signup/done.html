@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block content %}
+
+<div class="container">
+  {% if user.is_authenticated %}
+  <h1 class="m-0 text-center text-black"><b class="title-text">Registro Completado con éxito!</b></h1>
+  <br/>
+  {% if code %}
+  <p/> Por favor, conserve los siguientes datos de su socio beneficiario.
+  <p/> Permitirá a otros miembros importantes registrarse vinculados al mismo.
+  <br/>
+  <p/><strong>El ID numérico del socio b. es:</strong> 
+  <h2>{{ id }}</h2>
+  <p/><strong>el código personal del socio b. es:</strong>
+  <h2>{{ code }}</h2>
+  {% else %}
+  <p/> Ya puede utilizar las utilidades de la aplicación con su cuenta.
+  {% endif %}
+  <br/>
+  <br/>
+  <button class="btn btn-light" type="button" name="toHome" onclick="location.href='/'">Volver a inicio</button>
+  {% else %}
+  <h1 class="m-0 text-center text-black"><b>Imposible mostrar la página</b></h1>
+  <br/>
+  <p>Para continuar, debe ser un usuario registrado en el sistema.<p/>
+  {% endif %}
+</div>
+
+{% endblock content %}

@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block content %}
+
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.min.js"></script>
+
+<script>
+$( function() {
+  $( "#accordion" ).accordion({
+    collapsible: true
+});
+} );
+</script>
+
+<!--
+if $(".resp-list").slideToggle().is(""::hidden") {
+        $("#shower-btn").text("Mostrar Respuestas");
+        } else {
+        $("#shower-btn").text("Ocultar Respuestas");
+        }
+
+-->
+
+<script>
+  $(document).ready(function(){
+    $(".shower-btn").click(function(){
+      $(".resp-list").slideToggle();
+      //$(this).text($(".resp-list").is(":hidden") ? "Ocultar Respuestas" : "Mostrar Respuestas");
+      //$(this).text( $(this).text() == 'Mostrar Respuestas' ? "Ocultar Respuestas" : "Ocultar Respuestas");
+    });
+  });
+</script>
+
+<div class="container">
+  {% if messages %}
+    {% for message in messages %}
+        <div class="alert {{ message.tags }} alert-dismissible fade show" role="alert">
+          {{ message }}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" onclick="onButtonPress()"></button>
+        </div>
+    {% endfor %}
+  {% endif %}
+  {% if data %}
+  <button class="btn btn-secondary" onclick="location.href='/foro/posted'">Mis Publicaciones</button>
+    <div class="foro-accordion" id="accordion">
+    {% for post, respList in data %}
+      <div class="accordion-title"><h3>{{ post.Titulo }}</h3><p>[by {{ post.Creador.username }}]</p></div>
+      <div class="accordion-text">
+        <p>{{ post.Texto }}</p>
+        <p>{{ post.FechaCreacion }}</p>
+        {% if respList %}
+        <button class="shower-btn" name="showResps">Respuestas</button>
+          <ul class="resp-list">
+          {% for response in respList %}
+            <li>
+                <div class="response-title"><b>{{ response.Titulo }}</b><p>[by {{ response.Creador.username }}]</p></div>
+                <div class="response-text">
+                  <p>{{ response.Texto }}</p>
+                </div>
+            </li>
+          {% endfor %}
+          </ul>
+        {% else %}
+        <br/>
+        {% endif %}
+        <a href="/foro/response/{{ post.id }}" name="makeResponse">Responder</a>
+      </div>
+    {% endfor %}
+    </div>
+  {% else %}
+  <div>
+    <p/> No hay entradas de foro disponibles. Cree la suya propia!
+  </div>
+  {% endif %}
+  <div class="button-space">
+    <button class="btn btn-secondary" onclick="location.href='/foro/new'">+</button><!--<label class="plus"></label></button>-->
+  </div>
+</div>
+{% endblock content %}

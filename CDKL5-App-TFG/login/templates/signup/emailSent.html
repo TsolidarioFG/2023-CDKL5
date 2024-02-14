@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block content %}
+
+<div class="container">
+  <h1 class="m-0 text-center text-black"><b class="title-text">{{ title }}</b></h1>
+  <br/>
+  {% for line in text %}
+  <p/> {{ line }}
+  {% endfor %}
+  <br/>
+</div>
+
+{% endblock content %}

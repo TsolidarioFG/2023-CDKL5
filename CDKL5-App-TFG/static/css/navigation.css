@@ -1,0 +1,41 @@
+#header {
+    margin:left;
+}
+
+ul, ol {
+    list-style:none;
+}
+
+nav.navbar {
+    background: #B5BD00 !important;
+}
+
+.nav > li {
+    float:left;
+}
+
+.nav li a {
+    background-color: #B5BD00;
+    color:#fff;
+    text-decoration:none;
+    padding:10px 12px;
+    display:block;
+}
+
+.nav li a:hover {
+    background-color:#434343;
+}
+
+.nav li ul {
+    display:none;
+    position:absolute;
+    min-width:13%;
+}
+
+.nav li:hover > ul {
+    display:block;
+}
+
+.nav li ul li {
+    position:relative;
+}

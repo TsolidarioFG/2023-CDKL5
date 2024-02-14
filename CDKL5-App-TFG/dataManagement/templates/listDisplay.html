@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block content %}
+
+<div class="container" style="text-align: center; padding-top: 9%;">
+  <h1 class="m-0 text-center text-black"><b>Médicos de Referencia registrados</b></h1>
+  <br/>
+  <table>
+    <tr>
+      <th/>e-mail
+      <th/>Nombre
+      <th/>Apellidos
+    </tr>
+    {% for item in list %}
+    <tr>
+      <th/> {{ item.Email }}
+      <th/> {{ item.Nombre }}
+      <th/> {{ item.Apellidos }}
+    </tr>
+    {% endfor %}
+  </table>
+  <br/>
+  <button class="btn btn-light" onclick="location.href='/signup/opt/doctor'" name="signupDoctor">Registrar uno nuevo</button>
+</div>
+
+{% endblock content %}

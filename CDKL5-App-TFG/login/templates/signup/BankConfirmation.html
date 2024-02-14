@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block content %}
+
+<div class="container">
+{% if user.is_authenticated %}
+  <h1 class="m-0 text-center text-black"><b class="title-text">Datos Bancarios Detectados para socio b.: {{ id_socio }}</b></h1>
+  <br/>
+  <p>Ya existe una cuenta bancaria para el socio beneficiario dados por otro tutor responsable.<p/>
+  <p style="color:red">Si continúa el registro de datos bancarios, se sobreescribirá la información bancaria para el socio beneficiario.<p/>
+  <p>Desea Continuar?<p/>
+  <br/>
+    <button class="btn btn-light" type="button" name="continue" onclick="location.href='/signup/bank/continue'">Continuar</button>
+    <button class="btn btn-light" type="button" name="skip" onclick="location.href='/signup/bank/skip'">Omitir este paso</button>
+  {% else %}
+  <h1 class="m-0 text-center text-black"><b>Imposible continuar el registro</b></h1>
+  <br/>
+  <p>Para continuar el registro debe ser un usuario registrado en el sistema.<p/>
+{% endif %}
+</div>
+
+{% endblock content %}

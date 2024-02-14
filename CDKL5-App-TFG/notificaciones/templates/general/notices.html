@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block content %}
+
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.min.js"></script>
+
+<script>
+$( function() {
+  $( "#accordion" ).accordion({
+    collapsible: true,
+    active: false
+});
+});
+</script>
+
+<script>
+  function updateViewed(noticeID) {
+    fetch('http://85.31.238.158:80/notices/viewed/' + noticeID, {
+    method: 'GET',
+    //body: JSON.stringify({user: '0'})
+  }).then(response => {
+    if (document.getElementById(noticeID)
+    ) {
+    document.getElementById(noticeID).id = "visto";
+    var pendant = document.getElementById("PendantNo")
+      document.getElementById("PendantNo").textContent = parseInt(pendant.textContent) - 1
+      if (parseInt(document.getElementById("PendantNo").textContent) == 0) {
+        document.getElementById("PendantNo").remove()
+      }
+    }
+  })};
+</script>
+
+<div class="container">
+    {% if messages %}
+      {% for message in messages %}
+          <div class="alert {{ message.tags }} alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" onclick="onButtonPress()"></button>
+          </div>
+      {% endfor %}
+    {% endif %}
+    {% if data %}
+      <div id="accordion">
+      {% for notice in data %}
+        {% if notice.id not in vistos %}
+        <div class="accordion-title" id="{{ notice.id }}" onclick="updateViewed({{ notice.id }})"><h3>{{ notice.Titulo }}</h3><p>[by {{ notice.Creador.username }}]</p></div>
+        {% else %}
+        <div class="accordion-title" id="visto" onclick="updateViewed({{ notice.id }})"><h3>{{ notice.Titulo }}</h3><p>[by {{ notice.Creador.username }}]</p></div>
+        {% endif %}
+        <div class="accordion-text">
+          <p>{{ notice.Texto }}</p>
+          {% if notice.Adjunto %}
+            <a href="{{ notice.Adjunto.url }}" download>Descargar adjunto</a>
+          {% endif %}
+          <p>{{ notice.FechaCreacion }}</p>
+          
+        </div>
+      {% endfor %}
+      </div>
+    {% else %}
+    <div>
+      <p/> No hay Notificaciones por ahora.
+    </div>
+    {% endif %}
+    {% if user.is_staff %}
+    <div class="button-space">
+      <button class="btn btn-secondary" onclick="location.href='/notices/new'">+</button><!--<label class="plus"></label></button>-->
+    </div>
+    {% endif %}
+  </div>
+
+{% endblock content %}
